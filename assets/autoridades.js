@@ -21,7 +21,7 @@ const autoridades = [
     titulo: "Autoridade administrativa",
     cargo: "ministro do supremo tribunal federal",
     nomeacao: "Assembleia Permanente",
-    foto: "rafael.png",
+    foto: "assets/autoridades/william.jpg",
     bio: "parente de sangue do fundador, devido a isso possui beneficios exclusivos"
   },
   {
