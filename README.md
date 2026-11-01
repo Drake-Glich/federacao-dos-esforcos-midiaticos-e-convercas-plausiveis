@@ -7,7 +7,7 @@ Abra `index.html` no navegador.
 
 ## Como personalizar
 - Para a página de autoridades, edite apenas `assets/autoridades.js`. Cada administrador é um bloco com `nome`, `titulo`, `cargo`, `nomeacao`, `foto` e `bio`. O arquivo `autoridades.html` não precisa ser alterado.
-- Edite `assets/style.css` para alterar cores e layout.
+- Edite `assets/style.css` para alterar cores e layout. O modo escuro fica no final desse arquivo, na seção `MODO ESCURO`.
 - Edite as páginas HTML para atualizar textos e comunicados.
 
 ## Como editar a página de Autoridades
@@ -21,6 +21,9 @@ Abra `index.html` no navegador.
 - `autoridades.html`: estrutura da página, com a área onde a galeria é montada.
 - `assets/autoridades.js`: lista de administradores (é o arquivo que você edita).
 - `assets/autoridades/`: fotos dos administradores.
+
+## Modo escuro
+O site tem um botão **Modo escuro / Modo claro** no canto direito do menu. Ele é criado por `assets/site.js` em todas as páginas e a escolha fica salva no navegador. Na primeira visita, o site segue o tema do sistema do visitante.
 
 ## Publicar gratuitamente com GitHub Pages
 1. Crie um repositório público no GitHub.
