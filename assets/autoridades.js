@@ -10,19 +10,19 @@
 const autoridades = [
   {
     nome: "William",
-    titulo: "Líder Supremo 1",
+    titulo: "Líder Supremo",
     cargo: "Fundador da República",
-    nomeacao: "Golpe fundador",
+    nomeacao: "fundador e atual presidente",
     foto: "assets/autoridades/william.jpg",
-    bio: "Idealizador e primeiro Líder Supremo. Foi quem deu início ao golpe que derrubou a antiga ordem do grupo e estabeleceu a República atual."
+    bio: "Idealizador e primeiro Líder Supremo. Foi quem deu início ao golpe que derrubou a antiga ordem e estabeleceu a República atual."
   },
   {
-    nome: "Administrador Supremo 2",
+    nome: "Rafael (Drake)",
     titulo: "Autoridade administrativa",
-    cargo: "a definir",
+    cargo: "ministro do supremo tribunal federal",
     nomeacao: "Assembleia Permanente",
-    foto: "",
-    bio: ""
+    foto: "rafael.png",
+    bio: "parente de sangue do fundador, devido a isso possui beneficios exclusivos"
   },
   {
     nome: "Administrador Supremo 3",
