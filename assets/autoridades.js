@@ -25,19 +25,19 @@ const autoridades = [
     bio: "parente de sangue do fundador, devido a isso possui beneficios exclusivos"
   },
   {
-    nome: "Administrador Supremo 3",
+    nome: "Cauã",
     titulo: "Autoridade administrativa",
     cargo: "Advogado-Geral da União (AGU)",
     nomeacao: "Assembleia Permanente",
-    foto: "",
+    foto: "assets/autoridades/caua.jpg",
     bio: "Responsável por defender as besteiras que o grupo fala e emitir pareceres jurídicos quando as conversas plausíveis passarem do ponto."
   },
   {
-    nome: "Administrador Supremo 4",
+    nome: "Jean",
     titulo: "Autoridade administrativa",
     cargo: "Procurador-Geral da República (PGR)",
     nomeacao: "Assembleia Permanente",
-    foto: "",
+    foto: "assets/autoridades/jean.jpg",
     bio: "chefe do Ministério Público da União (MPU) e o procurador-geral perante o Supremo Tribunal Federal. É a autoridade máxima responsável por instaurar investigações, propor ações penais públicas e zelar pelo cumprimento da Constituição."
   },
   {
