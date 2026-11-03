@@ -27,34 +27,34 @@ const autoridades = [
   {
     nome: "Administrador Supremo 3",
     titulo: "Autoridade administrativa",
-    cargo: "a definir",
+    cargo: "Advogado-Geral da União (AGU)",
     nomeacao: "Assembleia Permanente",
     foto: "",
-    bio: ""
+    bio: "Responsável por defender as besteiras que o grupo fala e emitir pareceres jurídicos quando as conversas plausíveis passarem do ponto."
   },
   {
     nome: "Administrador Supremo 4",
     titulo: "Autoridade administrativa",
-    cargo: "a definir",
+    cargo: "Procurador-Geral da República (PGR)",
     nomeacao: "Assembleia Permanente",
     foto: "",
-    bio: ""
+    bio: "chefe do Ministério Público da União (MPU) e o procurador-geral perante o Supremo Tribunal Federal. É a autoridade máxima responsável por instaurar investigações, propor ações penais públicas e zelar pelo cumprimento da Constituição."
   },
   {
     nome: "Administrador Supremo 5",
     titulo: "Autoridade administrativa",
-    cargo: "a definir",
+    cargo: "Presidente do Superior Tribunal de Justiça (STJ)",
     nomeacao: "Assembleia Permanente",
     foto: "",
-    bio: ""
+    bio: "Chefe da corte responsável por uniformizar a interpretação das leis federais"
   },
   {
     nome: "Administrador Supremo 6",
     titulo: "Autoridade administrativa",
-    cargo: "a definir",
+    cargo: "Chefe do Estado-Maior Conjunto das Forças Armadas (EMCFA)",
     nomeacao: "Assembleia Permanente",
     foto: "",
-    bio: ""
+    bio: "Chefe do Estado-Maior Conjunto das Forças Armadas (EMCFA)"
   }
 ];
 
