@@ -54,7 +54,7 @@ const autoridades = [
     cargo: "Chefe do Estado-Maior Conjunto das Forças Armadas (EMCFA)",
     nomeacao: "Assembleia Permanente",
     foto: "",
-    bio: "Chefe do Estado-Maior Conjunto das Forças Armadas (EMCFA)"
+    bio: "Planejamento estratégico militar, operações conjuntas entre Marinha, Exército e Aeronáutica e doutrina de defesa nacional."
   }
 ];
 
