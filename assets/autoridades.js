@@ -49,11 +49,11 @@ const autoridades = [
     bio: "Chefe da corte responsável por uniformizar a interpretação das leis federais"
   },
   {
-    nome: "Administrador Supremo 6",
+    nome: "Murilo",
     titulo: "Autoridade administrativa",
     cargo: "Chefe do Estado-Maior Conjunto das Forças Armadas (EMCFA)",
     nomeacao: "Assembleia Permanente",
-    foto: "",
+    foto: "assets/autoridades/murilo.png",
     bio: "Planejamento estratégico militar, operações conjuntas entre Marinha, Exército e Aeronáutica e doutrina de defesa nacional."
   }
 ];
