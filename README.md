@@ -25,6 +25,12 @@ Abra `index.html` no navegador.
 ## Modo escuro
 O site tem um botão **Modo escuro / Modo claro** no canto direito do menu. Ele é criado por `assets/site.js` em todas as páginas e a escolha fica salva no navegador. Na primeira visita, o site segue o tema do sistema do visitante.
 
+## Cookies e Termos de Uso (humor)
+Na primeira visita aparecem duas caixas, uma depois da outra: aviso de cookies e termos de uso. Elas são criadas por `assets/site.js` em todas as páginas, e o estilo fica no fim de `assets/style.css`.
+- Para editar o texto dos termos, altere apenas a lista `TERMOS` no fim do `assets/site.js`. Cada item é `['título da cláusula','texto']`.
+- Para as caixas aparecerem de novo para todos os visitantes, troque o número em `const VERSAO='1'` (por exemplo, para `'2'`).
+- A escolha fica salva no navegador de cada visitante. O rodapé de todas as páginas tem o link "Termos de Uso e Política de Cookies", que reabre os termos.
+
 ## Publicar gratuitamente com GitHub Pages
 1. Crie um repositório público no GitHub.
 2. Envie todos os arquivos e pastas deste projeto para a raiz do repositório.
