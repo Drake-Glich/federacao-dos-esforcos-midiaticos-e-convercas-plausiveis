@@ -62,10 +62,33 @@ document.addEventListener('DOMContentLoaded',()=>{
   ['26ª — Do Aceite Final','Ao clicar em ACEITO, o USUÁRIO declara que leu todos os termos, entendeu todos os termos e confia que ninguém leu todos os termos. Declara, ainda, que NÃO FALARÁ SOBRE O GRUPO e que NÃO PERGUNTARÁ SOBRE A PISCINA.']
  ];
 
+
+ const CSS_LEI=`
+#lei-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:14px;z-index:99999;overflow:hidden}
+#lei-overlay .lei-caixa{background:var(--white,#fff);color:var(--ink,#202833);border:1px solid var(--line,#d9dee5);border-top:4px solid var(--gold,#c6a15b);width:100%;max-width:420px;max-height:92vh;display:flex;flex-direction:column;padding:22px 22px 18px;box-shadow:0 12px 44px #000a;box-sizing:border-box;font:14px/1.5 Arial,Helvetica,sans-serif;text-align:left}
+#lei-overlay .lei-caixa.lei-alta{max-width:460px;height:min(88vh,760px)}
+#lei-overlay h2{margin:0 0 8px;font-size:20px;line-height:1.25;color:var(--navy,#17365d);border:0;padding:0}
+#lei-overlay p{margin:6px 0;font-size:14px}
+#lei-overlay .lei-sub{color:var(--muted,#657180);font-size:12px}
+#lei-overlay .lei-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;border:1px solid var(--line,#d9dee5);background:var(--bg,#f3f5f7);padding:4px 14px 10px;margin:8px 0}
+#lei-overlay .lei-scroll h3{font-size:12.5px;margin:14px 0 2px;color:var(--navy,#17365d);text-transform:uppercase;letter-spacing:.3px;border:0;padding:0}
+#lei-overlay .lei-scroll p{font-size:13px;line-height:1.55}
+#lei-overlay .lei-mini{color:var(--muted,#657180);font-size:11px;margin-top:16px;border-top:1px solid var(--line,#d9dee5);padding-top:8px}
+#lei-overlay .lei-status{min-height:20px;color:var(--muted,#657180);font-size:12.5px}
+#lei-overlay .lei-botoes{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+#lei-overlay .lei-btn{background:var(--gold,#c6a15b);color:#182b40;border:1px solid var(--gold,#c6a15b);padding:11px 14px;font:inherit;font-size:13px;font-weight:bold;border-radius:2px;cursor:pointer;width:100%}
+#lei-overlay .lei-btn.sec{background:transparent;color:var(--ink,#202833);border-color:var(--line,#d9dee5)}
+#lei-overlay .lei-btn:hover:not(:disabled){filter:brightness(1.08)}
+#lei-overlay .lei-btn:disabled{opacity:.4;cursor:not-allowed}`;
+ function injetarCss(){
+  if(document.getElementById('lei-css'))return;
+  const s=document.createElement('style');s.id='lei-css';s.textContent=CSS_LEI;document.head.appendChild(s);
+ }
  let overlay=null;
- function abrir(html){
+ function abrir(html,extra){
+  injetarCss();
   if(!overlay){overlay=document.createElement('div');overlay.id='lei-overlay';document.body.appendChild(overlay)}
-  overlay.innerHTML='<div class="lei-caixa" role="dialog" aria-modal="true">'+html+'</div>';
+  overlay.innerHTML='<div class="lei-caixa'+(extra?' '+extra:'')+'" role="dialog" aria-modal="true">'+html+'</div>';
   document.body.style.overflow='hidden';
   return overlay.firstChild;
  }
@@ -96,7 +119,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    '<p class="lei-status" aria-live="polite"></p>'+
    '<div class="lei-botoes">'+(jaAceito
      ?'<button type="button" class="lei-btn" data-a="fechar">Fechar</button>'
-     :'<button type="button" class="lei-btn" data-a="aceitar" disabled>Aceito (não há alternativa)</button><button type="button" class="lei-btn sec" data-a="recusar">Não aceito</button>')+'</div>');
+     :'<button type="button" class="lei-btn" data-a="aceitar" disabled>Aceito (não há alternativa)</button><button type="button" class="lei-btn sec" data-a="recusar">Não aceito</button>')+'</div>','lei-alta');
   const st=c.querySelector('.lei-status'),sc=c.querySelector('.lei-scroll'),ok=c.querySelector('[data-a="aceitar"]');
   if(ok){
    st.textContent='Role até o final do texto para habilitar o botão.';
