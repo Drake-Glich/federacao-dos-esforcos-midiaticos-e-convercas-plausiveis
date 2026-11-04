@@ -79,7 +79,13 @@ document.addEventListener('DOMContentLoaded',()=>{
 #lei-overlay .lei-btn{background:var(--gold,#c6a15b);color:#182b40;border:1px solid var(--gold,#c6a15b);padding:11px 14px;font:inherit;font-size:13px;font-weight:bold;border-radius:2px;cursor:pointer;width:100%}
 #lei-overlay .lei-btn.sec{background:transparent;color:var(--ink,#202833);border-color:var(--line,#d9dee5)}
 #lei-overlay .lei-btn:hover:not(:disabled){filter:brightness(1.08)}
-#lei-overlay .lei-btn:disabled{opacity:.4;cursor:not-allowed}`;
+#lei-overlay .lei-btn:disabled{opacity:.4;cursor:not-allowed}
+#lei-progresso{position:fixed;left:0;right:0;bottom:0;z-index:99998;background:var(--white,#fff);color:var(--ink,#202833);border-top:3px solid var(--gold,#c6a15b);box-shadow:0 -6px 24px #0006;padding:12px 18px calc(12px + env(safe-area-inset-bottom,0px));font:13px/1.4 Arial,Helvetica,sans-serif;box-sizing:border-box;transition:opacity .6s,transform .6s}
+#lei-progresso.some{opacity:0;transform:translateY(100%)}
+#lei-progresso .lp-topo{display:flex;justify-content:space-between;gap:12px;margin-bottom:7px;font-weight:bold}
+#lei-progresso .lp-pct{color:var(--muted,#657180);font-weight:normal}
+#lei-progresso .lp-trilho{height:10px;background:var(--line,#d9dee5);border-radius:6px;overflow:hidden}
+#lei-progresso .lp-barra{height:100%;width:0;background:var(--gold,#c6a15b);border-radius:6px}`;
  function injetarCss(){
   if(document.getElementById('lei-css'))return;
   const s=document.createElement('style');s.id='lei-css';s.textContent=CSS_LEI;document.head.appendChild(s);
@@ -128,11 +134,46 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
   c.addEventListener('click',e=>{
    const a=e.target.getAttribute&&e.target.getAttribute('data-a');
-   if(a==='aceitar'){gravar(K_TERMOS);fechar()}
+   if(a==='aceitar'){gravar(K_TERMOS);fechar();progresso()}
    else if(a==='fechar')fechar();
    else if(a==='recusar')st.textContent='A recusa configura aceitação tácita (Cláusula 3ª). Por favor, role até o final e clique em ACEITO.';
   });
   sc.focus();
+ }
+
+
+ // ---- Barra de progresso falsa (só humor: não pede nem acessa nada de verdade) ----
+ // Para mudar as etapas, edite ETAPAS: ['mensagem', segundos]
+ const ETAPAS=[
+  ['Obtendo sua localização',5],
+  ['Instalando app de vigilância',4],
+  ['Obtendo acesso à câmera',4],
+  ['Obtendo acesso ao microfone',5],
+  ['Vendendo sua alma',6]
+ ];
+ function progresso(){
+  injetarCss();
+  const total=ETAPAS.reduce((s,e)=>s+e[1],0);
+  const box=document.createElement('div');box.id='lei-progresso';box.setAttribute('role','status');
+  box.innerHTML='<div class="lp-topo"><span class="lp-msg"></span><span class="lp-pct">0%</span></div><div class="lp-trilho"><div class="lp-barra"></div></div>';
+  document.body.appendChild(box);
+  const msg=box.querySelector('.lp-msg'),pct=box.querySelector('.lp-pct'),barra=box.querySelector('.lp-barra');
+  const ini=Date.now();
+  const t=setInterval(()=>{
+   const dec=(Date.now()-ini)/1000;
+   if(dec>=total){
+    clearInterval(t);
+    barra.style.width='100%';pct.textContent='100%';msg.textContent='Configuração concluída';
+    setTimeout(()=>{box.classList.add('some');setTimeout(()=>box.remove(),700)},3000);
+    return;
+   }
+   let acc=0,i=0;
+   while(i<ETAPAS.length&&dec>=acc+ETAPAS[i][1]){acc+=ETAPAS[i][1];i++}
+   const resta=Math.ceil(acc+ETAPAS[i][1]-dec);
+   msg.textContent=ETAPAS[i][0]+'… ('+resta+'s)';
+   const p=Math.floor(dec/total*100);
+   barra.style.width=(dec/total*100)+'%';pct.textContent=p+'%';
+  },100);
  }
 
  function iniciar(){
