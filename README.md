@@ -29,6 +29,7 @@ O site tem um botão **Modo escuro / Modo claro** no canto direito do menu. Ele 
 Na primeira visita aparecem duas caixas, uma depois da outra: aviso de cookies e termos de uso. Elas são criadas por `assets/site.js` em todas as páginas, e o estilo fica no fim de `assets/style.css`.
 - Para editar o texto dos termos, altere apenas a lista `TERMOS` no fim do `assets/site.js`. Cada item é `['título da cláusula','texto']`.
 - Para as caixas aparecerem de novo para todos os visitantes, troque o número em `const VERSAO='1'` (por exemplo, para `'2'`).
+- Depois de aceitar os termos pela primeira vez, aparece uma barra de progresso falsa na parte de baixo da página (localização, câmera, microfone, venda da alma). É só efeito visual: o site não pede nem acessa nada disso. Para mudar as mensagens e os tempos, edite a lista `ETAPAS` no `assets/site.js`.
 - A escolha fica salva no navegador de cada visitante. O rodapé de todas as páginas tem o link "Termos de Uso e Política de Cookies", que reabre os termos.
 
 ## Publicar gratuitamente com GitHub Pages
