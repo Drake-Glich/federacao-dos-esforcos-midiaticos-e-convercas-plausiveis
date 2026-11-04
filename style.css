@@ -63,21 +63,3 @@ html[data-theme="dark"] .searchbox input{background:var(--white);color:var(--ink
 html[data-theme="dark"] footer{background:#161616}
 html[data-theme="dark"] footer p,html[data-theme="dark"] .disclaimer{color:#a9a9a9}
 html[data-theme="dark"] .theme-toggle:hover{background:#2b2b2b}
-
-/* ===== COOKIES E TERMOS (caixas de primeira visita) ===== */
-#lei-overlay{position:fixed;inset:0;background:rgba(0,0,0,.68);display:flex;align-items:center;justify-content:center;padding:14px;z-index:9999}
-.lei-caixa{background:var(--white);color:var(--ink);border:1px solid var(--line);border-top:4px solid var(--gold);width:100%;max-width:660px;max-height:92vh;display:flex;flex-direction:column;padding:22px 24px;box-shadow:0 10px 40px #0008}
-.lei-caixa h2{margin:0 0 10px;font-size:21px;color:var(--navy)}
-.lei-caixa p{margin:6px 0;font-size:14px}
-.lei-sub{color:var(--muted);font-size:12px!important}
-.lei-scroll{flex:1 1 auto;min-height:0;overflow-y:auto;border:1px solid var(--line);background:var(--bg);padding:6px 16px 10px;margin:8px 0;max-height:52vh}
-.lei-scroll h3{font-size:13px;margin:14px 0 2px;color:var(--navy);text-transform:uppercase;letter-spacing:.3px}
-.lei-scroll p{font-size:13px!important;line-height:1.55}
-.lei-mini{color:var(--muted);font-size:11px!important;margin-top:16px!important;border-top:1px solid var(--line);padding-top:8px}
-.lei-status{min-height:20px;color:var(--muted);font-size:12.5px!important}
-.lei-botoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-.lei-btn{background:var(--gold);color:#182b40;border:1px solid var(--gold);padding:10px 16px;font:inherit;font-size:13px;font-weight:bold;border-radius:2px;cursor:pointer}
-.lei-btn.sec{background:transparent;color:var(--ink);border-color:var(--line)}
-.lei-btn:hover:not(:disabled){filter:brightness(1.08)}
-.lei-btn:disabled{opacity:.4;cursor:not-allowed}
-@media(max-width:480px){.lei-caixa{padding:16px}.lei-btn{flex:1 1 100%}}
