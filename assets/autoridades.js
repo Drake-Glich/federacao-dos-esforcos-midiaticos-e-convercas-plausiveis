@@ -41,11 +41,11 @@ const autoridades = [
     bio: "chefe do Ministério Público da União (MPU) e o procurador-geral perante o Supremo Tribunal Federal. É a autoridade máxima responsável por instaurar investigações, propor ações penais públicas e zelar pelo cumprimento da Constituição."
   },
   {
-    nome: "Administrador Supremo 5",
+    nome: "Pedro",
     titulo: "Autoridade administrativa",
     cargo: "Presidente do Superior Tribunal de Justiça (STJ)",
     nomeacao: "Assembleia Permanente",
-    foto: "",
+    foto: "assets/autoridades/pedro.jpg",
     bio: "Chefe da corte responsável por uniformizar a interpretação das leis federais"
   },
   {
