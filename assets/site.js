@@ -136,8 +136,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 .lei-rodape{display:flex;align-items:center;gap:14px;margin:0 0 10px}
 .lei-rodape a.lei-termos{color:#e6c274;font-weight:bold}
 .lei-rodape small{display:block;color:#e6c274;font-size:11px;opacity:.85}
-.lei-estrela{color:#e6c274;text-decoration:none;font-size:15px;opacity:.7}
-.lei-estrela:hover{opacity:1;text-decoration:none}
 .dica{display:none}
 html.dicas-on .dica{display:revert}
 .tarja{background:#000;color:#000;box-shadow:0 0 0 1px #777;border-radius:2px;padding:0 .3em;cursor:pointer;user-select:none;transition:all .15s}
@@ -352,14 +350,21 @@ html.dicas-on .dica{display:revert}
   const d=document.querySelector('footer .disclaimer');if(!d)return;
   const w=document.createElement('div');w.className='lei-rodape';
   const lido=A.get('termos_lidos')==='sim';
-  w.innerHTML='<div><a href="#" class="lei-termos">Termos de Uso e Política de Cookies</a>'+(lido?'':'<small>você não leu os termos</small>')+'</div><a href="#" class="lei-estrela" title="Preferências do Sistema" aria-label="Preferências do Sistema">✦</a>';
+  w.innerHTML='<div><a href="#" class="lei-termos">Termos de Uso e Política de Cookies</a>'+(lido?'':'<small>você não leu os termos</small>')+'</div>';
   w.querySelector('.lei-termos').addEventListener('click',e=>{e.preventDefault();A.set('termos_lidos','sim');const s=w.querySelector('small');if(s)s.remove();mostrarTermos(true)});
-  w.querySelector('.lei-estrela').addEventListener('click',e=>{e.preventDefault();mostrarPrefs()});
   d.parentNode.insertBefore(w,d);
  }
 
+ function brasao(){
+  const b=document.querySelector('header .crest');if(!b)return;
+  b.style.cursor='pointer';b.setAttribute('role','button');b.setAttribute('tabindex','0');b.setAttribute('aria-label','Preferências do Sistema');
+  const abrirP=e=>{e.preventDefault();mostrarPrefs()};
+  b.addEventListener('click',abrirP);
+  b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')abrirP(e)});
+ }
+
  function iniciar(){
-  injetarCss();rodape();
+  injetarCss();rodape();brasao();
   if(A.get('dicas_liberadas'))document.querySelectorAll('.dica[hidden]').forEach(e=>{e.hidden=false});
   document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('.tarja');if(t)t.classList.toggle('aberta')});
   atualizarBug();

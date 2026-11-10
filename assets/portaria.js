@@ -104,13 +104,10 @@ var ALMAS=[
  ['ALM-008','Almas sem identificação (14)','Misturadas','Caixa de papelão']
 ];
 
-var PROCURADOS=[
- {nome:'O Ladrão do Último Pedaço de Torta',crime:'Comer o último pedaço sem avisar.',status:'ENCONTRADO',nota:'Negou tudo, com migalhas na boca.'},
- {nome:'Os Que Perguntaram Sobre a Piscina',crime:'Perguntar sobre a piscina (várias pessoas).',status:'ENCONTRADO',nota:'Estão bem. Pararam de perguntar.'},
- {nome:'O Autor do Cheiro na Assembleia',crime:'Perturbação do ambiente em caráter permanente.',status:'PROCURADO',nota:'Não identificado. Possivelmente permanente.'},
- {nome:'A Piscina',crime:'Estar fechada desde antes de ser aberta.',status:'PROCURADA',nota:'Foto indisponível. Paradeiro: fechada. Ver Caso nº 000/GEMCP.'},
- {nome:'Cidadão 564.57.99 (reincidente)',crime:'Excesso de perguntas.',status:'PROCURADO',nota:'Se avistado, não responder.'}
-];
+// Lista de procurados: vazia de propósito. Para acrescentar alguém, use:
+// {nome:'Nome',crime:'Motivo.',status:'PROCURADO',nota:'Observação.'}  (status: PROCURADO ou ENCONTRADO)
+var PROCURADOS=[];
+var NOTA_PROCURADOS='Todos os procurados já foram encontrados. Nenhum quis comentar.';
 
 /* ============================ GUARDA ============================ */
 function getC(k){var p=document.cookie.split('; ');for(var i=0;i<p.length;i++){var x=p[i].indexOf('=');if(p[i].slice(0,x)===k)return decodeURIComponent(p[i].slice(x+1))}return null}
@@ -175,7 +172,7 @@ function secInicio(){
  '<a class="cartao" href="#comunicados"><h3>Comunicados de imprensa</h3><p>A história oficial, em ordem cronológica. As datas são sigilosas.</p></a>'+
  '<a class="cartao" href="#informacao"><h3>Acesso à Informação</h3><p>Pedidos de cidadãos e as respostas da Administração.</p></a>'+
  '<a class="cartao" href="#almas"><h3>Inventário de almas</h3><p>Controle de estoque, condição e local de guarda.</p></a>'+
- '<a class="cartao" href="#procurados"><h3>Procurados</h3><p>Lista de foragidos, encontrados e não identificados.</p></a>'+
+ '<a class="cartao" href="#procurados"><h3>Procurados</h3><p>Lista de foragidos. Atualmente vazia.</p></a>'+
  '</div></section>';
 }
 function secCasos(){
@@ -212,7 +209,8 @@ function secAlmas(){
 }
 function secProcurados(){
  var l=PROCURADOS.map(function(p){var ok=p.status==='ENCONTRADO';return '<div class="pc item" style="border-left-width:1px;margin:0"><div class="sil">♙</div><h3>'+p.nome+'</h3><div class="faixa'+(ok?' ok':'')+'">'+p.status+'</div><p><b>Motivo:</b> '+p.crime+'</p><p>'+p.nota+'</p></div>'}).join('');
- return '<section class="sec" id="s-procurados"><h2 class="t">Procurados</h2><p class="sub">Se você tiver informações, não nos diga.</p><div class="cards">'+l+'</div></section>';
+ var corpo=PROCURADOS.length?'<div class="cards">'+l+'</div>':'<div class="item" style="text-align:center;padding:34px 18px"><div style="font-size:54px;color:var(--mut);line-height:1">♙</div><h3 style="margin:10px 0 6px">Nenhum procurado no momento</h3><p style="margin:0;color:var(--mut)">'+NOTA_PROCURADOS+'</p></div>';
+ return '<section class="sec" id="s-procurados"><h2 class="t">Procurados</h2><p class="sub">Se você tiver informações, não nos diga.</p>'+corpo+'</section>';
 }
 
 function montar(){
