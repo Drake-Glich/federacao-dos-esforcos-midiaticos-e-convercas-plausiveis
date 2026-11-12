@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const gravar=k=>A.set(k,'sim');
  const num=k=>parseInt(A.get(k)||'0',10)||0;
  const soma=k=>{const n=num(k)+1;A.set(k,String(n));return n};
- const SENHA='PORTARIAGEMCP'; // PORTARIA_GEMCP sem os separadores (o campo ignora _, - e espaço)
+ const SENHA='PORTARIAGEMCP'; // PortariaGemcp (o campo ignora maiúsculas, acentos e espaços)
  const SVG_BUG='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 9a4 4 0 0 1 8 0v6a4 4 0 0 1-8 0z"/><path d="M12 9v11M4 13h4M16 13h4M5 7l3 2M19 7l-3 2M5 20l3-2M19 20l-3-2"/></svg>';
 
  const TERMOS=[
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   ['23ª — Da Vigência','Este contrato vigora desde a data indefinida da assinatura até o fim dos tempos, prorrogando-se automaticamente por igual período.'],
   ['24ª — Das Disposições Gerais','Se alguma cláusula for considerada inválida, as demais permanecem válidas e a inválida passa a valer em dobro. Este documento prevalece sobre qualquer outro, inclusive sobre o bom senso.'],
   ['25ª — Do Foro','Fica eleito o foro da comarca de Brasília Digital, de data indefinida, para dirimir quaisquer questões decorrentes deste instrumento, com renúncia expressa a qualquer outro, por mais privilegiado que seja.'],
-  ['26ª — Do Aceite Final','Ao clicar em ACEITO, o USUÁRIO declara que leu todos os termos, entendeu todos os termos e confia que ninguém leu todos os termos. Declara, ainda, que NÃO FALARÁ SOBRE O GRUPO e que NÃO PERGUNTARÁ SOBRE A PISCINA.<span class="dica"><br><br>Anexo confidencial (dica nº 1): <span class="tarja" title="Clique para revelar">PARTE 1: PORTARIA_</span></span>']
+  ['26ª — Do Aceite Final','Ao clicar em ACEITO, o USUÁRIO declara que leu todos os termos, entendeu todos os termos e confia que ninguém leu todos os termos. Declara, ainda, que NÃO FALARÁ SOBRE O GRUPO e que NÃO PERGUNTARÁ SOBRE A PISCINA.<span class="dica"><br><br>Anexo confidencial (dica nº 1): <span class="tarja" title="Clique para revelar">PARTE 1: Portaria</span></span>']
  ];
 
  const CSS_LEI=`#lei-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:14px;z-index:99999;overflow:hidden}
@@ -134,7 +134,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 .bug-toggle{background:transparent;border:0;border-left:1px solid #ffffff20;color:#fff;cursor:pointer;padding:13px 14px;display:flex;align-items:center}
 .bug-toggle:hover,.theme-toggle:hover{background:rgba(255,255,255,.14)}
 .lei-rodape{display:flex;align-items:center;gap:14px;margin:0 0 10px}
-.lei-rodape a.lei-termos{color:#e6c274;font-weight:bold}
+.lei-rodape a.lei-termos{color:#fff}
+.lei-rodape a.lei-termos.novo{color:#e6c274;font-weight:bold}
 .lei-rodape small{display:block;color:#e6c274;font-size:11px;opacity:.85}
 .dica{display:none}
 html.dicas-on .dica{display:revert}
@@ -165,6 +166,7 @@ html.dicas-on .dica{display:revert}
   A.set('dicas_liberadas','sim');
   document.documentElement.classList.add('dicas-on');
   document.querySelectorAll('.dica[hidden]').forEach(e=>{e.hidden=false});
+  destacarTermos();
  }
 
  function mostrarCookies(depois){
@@ -187,7 +189,7 @@ html.dicas-on .dica{display:revert}
  function mostrarTermos(jaAceito){
   const corpo=TERMOS.map(t=>'<h3>Cláusula '+t[0]+'</h3><p>'+t[1]+'</p>').join('');
   const c=abrir('<h2>📜 Termos de Uso e Contrato de Adesão Perpétua</h2>'+
-   '<p class="lei-sub">Versão 7.3.1-b · Aprovada pela Assembleia Permanente em data indefinida</p>'+
+   '<p class="lei-sub">Versão 8.67.42a · Aprovada pela Assembleia Permanente em data indefinida</p>'+
    '<div class="lei-scroll" tabindex="0">'+corpo+'<p class="lei-mini">Documento de caráter humorístico e fictício, sem qualquer validade jurídica. Nenhuma alma foi realmente adquirida.</p></div>'+
    '<p class="lei-status" aria-live="polite"></p>'+
    '<div class="lei-botoes">'+(jaAceito
@@ -254,7 +256,7 @@ html.dicas-on .dica{display:revert}
   const sw=on=>'<span class="pf-sw'+(on?' on':'')+'"><i></i></span>';
   const lin=(k,t,d,ctl)=>'<div class="pf-linha" data-k="'+k+'"><div class="pf-txt"><b>'+t+'</b><small>'+d+'</small></div>'+ctl+'<div class="pf-aviso" hidden></div></div>';
   const gr=(t,x)=>'<div class="pf-grupo">'+t+'</div>'+x;
-  const c=abrir('<h2>⚙ Preferências do Sistema</h2><p class="lei-sub">Versão 7.3.1-b · Gerenciado pela Administração</p><div class="pf-scroll">'+
+  const c=abrir('<h2>⚙ Preferências do Sistema</h2><p class="lei-sub">Versão 8.67.42a · Gerenciado pela Administração</p><div class="pf-scroll">'+
    gr('Geral',lin('livre','Livre arbítrio','Permite que você tome decisões por conta própria.',sw(true))+lin('notif','Notificações da Assembleia','Receber avisos da Assembleia Permanente a qualquer hora.',sw(true)))+
    gr('Privacidade',lin('alma','Propriedade da alma','Titular atual do cadastro.','<span class="pf-pill">República ›</span>')+lin('vig','Vigilância (câmera e microfone)','Aumenta a sua segurança.',sw(true))+lin('sync','Sincronizar com a Administração','Envia as suas preferências à Administração.',sw(true)))+
    gr('Compartilhamento',lin('comp','Compartilhar grupo','Convide pessoas para conhecer o Grupo.','<span class="pf-pill">Compartilhar ›</span>'))+
@@ -292,7 +294,7 @@ html.dicas-on .dica{display:revert}
   if(on&&!b){injetarCss();b=document.createElement('button');b.type='button';b.className='bug-toggle';b.title='Modo debug';b.setAttribute('aria-label','Modo debug');b.innerHTML=SVG_BUG;b.addEventListener('click',mostrarLogin);wrap.appendChild(b)}
   if(!on&&b)b.remove();
  }
- const norm=s=>s.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\s_\-]+/g,'');
+ const norm=s=>s.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'');
  const ISCAS={
   'ADMIN123':'Senha válida, mas para o ano de 1997.',
   'PISCINA':'Alerta: a Assembleia foi notificada de que você perguntou sobre a piscina.',
@@ -312,12 +314,14 @@ html.dicas-on .dica{display:revert}
   'FEMCP':'Sigla desatualizada. A Administração não usa mais essa.',
   'GEMCP':'Está no caminho, mas faltou a primeira parte.',
   'PORTARIA':'Está no caminho, mas faltou a segunda parte.',
+  'PORTARIA_GEMCP':'Essa era a senha antiga. A Administração a aposentou, por motivos de simplicidade.',
+  'PORTARIA-GEMCP':'Essa era a senha antiga. A Administração a aposentou, por motivos de simplicidade.',
   'ANTIGAORDEM':'Não existe nenhuma Antiga Ordem. E, se existisse, seria nova.',
   'CACHOEIRA':'Operação desconhecida. Não existe relatório sobre isso. Pare de procurar.',
   'ALMA':'A alma já pertence à República.'
  };
- const ERRADAS=['Senha incorreta. A Assembleia foi notificada.','Acesso negado. Tente de novo, ou não.','Senha incorreta. Esta tentativa foi registrada em local fresco e arejado.','Negado por motivos de segurança, que são secretos.'];
- const AJUDA=['As dicas foram enviadas aos documentos oficiais da República. Procure as tarjas pretas.','Dica extra da Assembleia: leia os Termos de Uso, a Constituição e os Comunicados.','Os Termos estão no rodapé. A Constituição e os Comunicados estão no menu. Clique nas tarjas pretas para revelar o que está escondido.'];
+ const ERRADAS=['Senha incorreta. A Assembleia foi notificada.','Acesso negado. Tente de novo, ou não.','Senha incorreta. Esta tentativa foi registrada e arquivada junto com as anteriores.','Negado por motivos de segurança, que são secretos.'];
+ const AJUDA=['As dicas foram enviadas aos documentos oficiais da República. Os Termos de Uso foram atualizados, e há algo novo no rodapé. Procure as tarjas pretas.','Dica extra da Assembleia: leia os Termos de Uso (o link amarelo do rodapé) e a Constituição.','O link amarelo do rodapé abre os Termos. A Constituição está no menu. Clique nas tarjas pretas para revelar o que está escondido.'];
  function mostrarLogin(){
   const c=abrir('<h2>🔒 Acesso restrito</h2><p class="lei-sub">Área exclusiva dos Administradores Supremos</p>'+
    '<label class="lg-label" for="lg-senha">Senha</label><input id="lg-senha" class="lg-input" type="password" autocomplete="off" placeholder="Digite a senha">'+
@@ -345,14 +349,23 @@ html.dicas-on .dica{display:revert}
   inp.focus();
  }
 
- // ---------- Rodapé: link amarelo dos termos e o ✦ ----------
+ // ---------- Rodapé: link dos termos (fica amarelo só depois do "esqueci a senha") ----------
+ function destacarTermos(){
+  const w=document.querySelector('.lei-rodape');if(!w)return;
+  const a=w.querySelector('.lei-termos');
+  const deve=!!A.get('dicas_liberadas')&&A.get('termos_novidade')!=='sim';
+  a.classList.toggle('novo',deve);
+  let s=w.querySelector('small');
+  if(deve&&!s){s=document.createElement('small');s.textContent='Termos atualizados. Você não leu os anteriores.';a.parentNode.appendChild(s)}
+  if(!deve&&s)s.remove();
+ }
  function rodape(){
   const d=document.querySelector('footer .disclaimer');if(!d)return;
   const w=document.createElement('div');w.className='lei-rodape';
-  const lido=A.get('termos_lidos')==='sim';
-  w.innerHTML='<div><a href="#" class="lei-termos">Termos de Uso e Política de Cookies</a>'+(lido?'':'<small>você não leu os termos</small>')+'</div>';
-  w.querySelector('.lei-termos').addEventListener('click',e=>{e.preventDefault();A.set('termos_lidos','sim');const s=w.querySelector('small');if(s)s.remove();mostrarTermos(true)});
+  w.innerHTML='<div><a href="#" class="lei-termos">Termos de Uso e Política de Cookies</a></div>';
+  w.querySelector('.lei-termos').addEventListener('click',e=>{e.preventDefault();if(A.get('dicas_liberadas'))A.set('termos_novidade','sim');destacarTermos();mostrarTermos(true)});
   d.parentNode.insertBefore(w,d);
+  destacarTermos();
  }
 
  function brasao(){
