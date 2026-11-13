@@ -43,6 +43,9 @@ Na primeira visita aparecem duas caixas, uma depois da outra: o aviso de cookies
 - Os cookies são de verdade, mas guardam apenas valores inofensivos no navegador de cada visitante. Se o navegador bloquear cookies, o site usa o armazenamento local. A Administração não vê a diferença e, portanto, não se importa.
 - O rodapé de todas as páginas tem um link para reler os termos. Não é obrigatório reler. É apenas recomendado, em tom de quem já sabe que não será lido.
 
+## Notas de atualização
+Ficam em `atualizacoes.html`, e o menu do site ganha o link "Atualizações" automaticamente (isso é feito pelo `assets/site.js`). Para registrar uma nova versão, copie um bloco `<div class="content">` inteiro, cole acima do mais recente e troque o número da versão. Documentar tudo não é obrigatório. A Administração prefere que não.
+
 ## Publicar gratuitamente com GitHub Pages
 1. Crie um repositório público no GitHub.
 2. Envie todos os arquivos e pastas deste projeto para a raiz do repositório.
