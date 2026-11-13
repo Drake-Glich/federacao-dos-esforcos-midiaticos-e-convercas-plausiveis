@@ -31,6 +31,9 @@
 // ---------- 3) Menu, botão de tema e pesquisa ----------
 document.addEventListener('DOMContentLoaded',()=>{
  const wrap=document.querySelector('nav .wrap');
+ if(wrap&&!wrap.querySelector('a[href="atualizacoes.html"]')){
+  const l=document.createElement('a');l.href='atualizacoes.html';l.textContent='Atualizações';wrap.appendChild(l);
+ }
  if(wrap&&window.__tema){
   const b=document.createElement('button');b.type='button';b.className='theme-toggle';
   const rot=()=>{b.textContent=window.__tema.get()==='dark'?'☀ Modo claro':'☾ Modo escuro'};
